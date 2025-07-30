@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class InputController : MonoBehaviour
@@ -12,7 +13,19 @@ public class InputController : MonoBehaviour
     private float jumpForce = 150f;
 
     [SerializeField]
-    private float groundCastLength = 1f;
+    private float slopeCheckLength = 1f;
+
+    [SerializeField]
+    private Transform groundCheckPosition;
+
+    [SerializeField]
+    private Transform slopeCheckPosition;
+
+    [SerializeField]
+    private float maxSlopeAngle = 65f;
+
+    [SerializeField]
+    private float groundCheckRadius = 0.5f;
 
     [SerializeField]
     private LayerMask groundLayer;
@@ -24,13 +37,25 @@ public class InputController : MonoBehaviour
     private RaycastHit2D groundCastHit;
     private bool isGrounded;
     private bool isOnSlope;
+    private bool isJumping;
+    private bool canJump;
+    private bool canWalkOnSlope;
 
     Vector2 targetVelocity;
     private Vector2 colliderSize;
 
     private float slopeDownAngle;
+    private float slopeSideAngle;
     private float slopeDownAngleOld;
     private Vector2 slopeNormalPerp;
+
+    [SerializeField]
+    private PhysicsMaterial2D friction;
+
+    [SerializeField]
+    private PhysicsMaterial2D noFriction;
+
+    private Vector2 moveDirection;
 
     private void Awake()
     {
@@ -44,16 +69,23 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
-        groundCastHit = Physics2D.Raycast(
-            transform.position,
-            Vector2.down,
-            groundCastLength,
+        moveDirection = movementActions.Move.ReadValue<Vector2>().normalized;
+
+        isGrounded = Physics2D.OverlapCircle(
+            groundCheckPosition.position,
+            groundCheckRadius,
             groundLayer
         );
 
-        isGrounded = groundCastHit;
+        if (rb.linearVelocity.y <= 0)
+        {
+            isJumping = false;
+        }
 
-        //Debug.DrawRay(transform.position, Vector2.down * groundCastLength, Color.red);
+        if (isGrounded && !isJumping)
+        {
+            canJump = true;
+        }
     }
 
     private void FixedUpdate()
@@ -67,18 +99,25 @@ public class InputController : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        Vector2 moveForce = movementSpeed * MoveDirection();
+        Vector2 moveForce = (100 * Time.deltaTime) * movementSpeed * moveDirection;
 
         //Add forces to rigidbody
-        targetVelocity.Set(moveForce.x * (100 * Time.fixedDeltaTime), rb.linearVelocity.y);
-        rb.linearVelocity = targetVelocity;
+        //targetVelocity.Set(moveForce.x * (100 * Time.fixedDeltaTime), rb.linearVelocity.y);
 
-        if (isGrounded && !isOnSlope)
+        //On ground
+        if (isGrounded && !isOnSlope && !isJumping)
         {
-            targetVelocity.Set(moveForce.x, 0.0f);
+            targetVelocity.Set(moveForce.x, rb.linearVelocity.y);
             rb.linearVelocity = targetVelocity;
         }
-        else if (isGrounded && isOnSlope) { }
+        else if (isGrounded && isOnSlope && canWalkOnSlope && !isJumping)
+        {
+            targetVelocity.Set(
+                -moveDirection.x * slopeNormalPerp.x * movementSpeed,
+                movementSpeed * slopeNormalPerp.y * -moveDirection.x
+            );
+            rb.linearVelocity = targetVelocity;
+        }
         else if (!isGrounded)
         {
             targetVelocity.Set(moveForce.x, rb.linearVelocity.y);
@@ -88,18 +127,53 @@ public class InputController : MonoBehaviour
 
     private void SlopeCheck()
     {
-        Vector2 checkPos = transform.position - new Vector3(0f, colliderSize.y / 2);
-        SlopeCheckVertical(checkPos);
+        SlopeCheckHorizontal(slopeCheckPosition.position);
+        SlopeCheckVertical(slopeCheckPosition.position);
     }
 
-    private void SlopeCheckHorizontal(Vector2 checkPos) { }
+    private void SlopeCheckHorizontal(Vector2 checkPos)
+    {
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(
+            checkPos,
+            transform.right,
+            slopeCheckLength,
+            groundLayer
+        );
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(
+            checkPos,
+            -transform.right,
+            slopeCheckLength,
+            groundLayer
+        );
+
+        if (slopeHitFront)
+        {
+            isOnSlope = true;
+
+            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+        }
+        else if (slopeHitBack)
+        {
+            isOnSlope = true;
+
+            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+        }
+        else
+        {
+            slopeSideAngle = 0.0f;
+            isOnSlope = false;
+        }
+
+        Debug.DrawRay(checkPos, transform.right * slopeCheckLength, Color.blue);
+        Debug.DrawRay(checkPos, -transform.right * slopeCheckLength, Color.yellow);
+    }
 
     private void SlopeCheckVertical(Vector2 checkPos)
     {
-        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, groundCastLength, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckLength, groundLayer);
         if (hit)
         {
-            slopeNormalPerp = Vector2.Perpendicular(hit.normal);
+            slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
 
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 
@@ -113,12 +187,34 @@ public class InputController : MonoBehaviour
             Debug.DrawRay(hit.point, slopeNormalPerp, Color.red);
             Debug.DrawRay(hit.point, hit.normal, Color.green);
         }
+
+        if (slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
+        {
+            canWalkOnSlope = false;
+        }
+        else
+        {
+            canWalkOnSlope = true;
+        }
+
+        if (isOnSlope && canWalkOnSlope && moveDirection.x == 0.0f)
+        {
+            rb.sharedMaterial = friction;
+        }
+        else
+        {
+            rb.sharedMaterial = noFriction;
+        }
     }
 
     private void Jump(InputAction.CallbackContext ctx)
     {
-        if (!isGrounded)
+        if (!canJump)
             return;
+
+        canJump = false;
+        isJumping = true;
+
         rb.linearVelocity = Vector2.zero;
         rb.AddForce((100f * Time.deltaTime) * jumpForce * Vector2.up, ForceMode2D.Impulse);
     }
@@ -142,6 +238,11 @@ public class InputController : MonoBehaviour
         }
 
         return moveDirection.normalized;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheckPosition.position, groundCheckRadius);
     }
 
     private void OnEnable()
