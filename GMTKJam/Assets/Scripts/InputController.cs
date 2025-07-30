@@ -113,9 +113,11 @@ public class InputController : MonoBehaviour
         else if (isGrounded && isOnSlope && canWalkOnSlope && !isJumping)
         {
             targetVelocity.Set(
-                -moveDirection.x * slopeNormalPerp.x * movementSpeed,
+                movementSpeed * slopeNormalPerp.x * -moveDirection.x,
                 movementSpeed * slopeNormalPerp.y * -moveDirection.x
             );
+
+            Debug.DrawRay(transform.position, targetVelocity.normalized, Color.coral);
             rb.linearVelocity = targetVelocity;
         }
         else if (!isGrounded)
@@ -171,6 +173,7 @@ public class InputController : MonoBehaviour
     private void SlopeCheckVertical(Vector2 checkPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckLength, groundLayer);
+        Debug.DrawRay(checkPos, Vector2.down * slopeCheckLength, Color.brown);
         if (hit)
         {
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
