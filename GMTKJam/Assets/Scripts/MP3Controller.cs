@@ -7,6 +7,9 @@ public class MP3Controller : MonoBehaviour
     private BoolEventChannel skipSongEvent;
     private BoolEvent skipEvent;
 
+    [SerializeField]
+    private SongTemplate currentSong;
+
     private void Awake()
     {
         skipEvent = new();

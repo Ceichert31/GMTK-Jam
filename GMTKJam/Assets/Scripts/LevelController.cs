@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls which level the player is on and plays the according song
+/// </summary>
 public class LevelController : MonoBehaviour
 {
     //Manage the players current level and move player between levels
@@ -12,7 +15,36 @@ public class LevelController : MonoBehaviour
     private int currentLevel = 0;
 
     [SerializeField]
-    private List<Transform> levelSpawnpointList = new();
+    private List<SongLevelPair> levelSpawnpointList = new();
+
+    [SerializeField]
+    private float loopLength;
+
+    [SerializeField]
+    private float currentTime;
+
+    [SerializeField]
+    private SongEventChannel switchSongEvent;
+    private SongEvent songEvent;
+
+    private void Awake()
+    {
+        SetupLevel(0);
+    }
+
+    private void Update()
+    {
+        currentTime += Time.deltaTime;
+    }
+
+    public void EndOfSong(VoidEvent ctx)
+    {
+        SetupLevel(currentLevel);
+        //Switch to current level
+        GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel]
+            .spawnPoint
+            .position;
+    }
 
     /// <summary>
     /// Switches levels based on the value passed through
@@ -38,6 +70,33 @@ public class LevelController : MonoBehaviour
         currentLevel = Mathf.Clamp(currentLevel, 0, levelSpawnpointList.Count - 1);
 
         //Switch to current level
-        GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel].position;
+        GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel]
+            .spawnPoint
+            .position;
+
+        SetupLevel(currentLevel);
+
+        //Update UI
     }
+
+    /// <summary>
+    /// Sets all variables to initialize a level
+    /// </summary>
+    /// <param name="level"></param>
+    private void SetupLevel(int level)
+    {
+        currentTime = 0;
+
+        //Send event to switch songs
+        songEvent.SongValue = levelSpawnpointList[level].Song;
+        switchSongEvent.CallEvent(songEvent);
+        loopLength = levelSpawnpointList[level].Song.songFile.length;
+    }
+}
+
+[System.Serializable]
+public struct SongLevelPair
+{
+    public SongTemplate Song;
+    public Transform spawnPoint;
 }
