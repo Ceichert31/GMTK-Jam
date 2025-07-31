@@ -14,4 +14,9 @@ public class CameraShakeManager : MonoBehaviour
     {
         transform.DOShakePosition(duration, intensity);
     }
+
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
 }

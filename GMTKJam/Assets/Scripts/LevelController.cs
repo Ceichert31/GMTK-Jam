@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 /// <summary>
@@ -27,8 +28,14 @@ public class LevelController : MonoBehaviour
     private SongEventChannel switchSongEvent;
     private SongEvent songEvent;
 
+    private Vector3 noDamping = new(0, 0, 0);
+    private Vector3 damping = new(1, 1, 1);
+    private CinemachineFollow follow;
+
     private void Awake()
     {
+        follow = Camera.main.GetComponent<CinemachineFollow>();
+
         SetupLevel(0);
     }
 
@@ -91,7 +98,12 @@ public class LevelController : MonoBehaviour
         songEvent.SongValue = levelSpawnpointList[level].Song;
         switchSongEvent.CallEvent(songEvent);
         loopLength = levelSpawnpointList[level].Song.songFile.length;
+
+        follow.TrackerSettings.PositionDamping = noDamping;
+        Invoke(nameof(ResetDamping), 0.1f);
     }
+
+    private void ResetDamping() => follow.TrackerSettings.PositionDamping = damping;
 }
 
 [System.Serializable]
