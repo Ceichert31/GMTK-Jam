@@ -27,14 +27,17 @@ public class LevelController : MonoBehaviour
         {
             //Move right
             //Prevent current level from going out of scope (rolls over to 0)
-            currentLevel = currentLevel++ % levelSpawnpointList.Count;
+            currentLevel++;
         }
         else
         {
             //Move left
-            currentLevel = currentLevel-- % levelSpawnpointList.Count;
+            currentLevel--;
         }
 
+        currentLevel = Mathf.Clamp(currentLevel, 0, levelSpawnpointList.Count - 1);
+
         //Switch to current level
+        GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel].position;
     }
 }

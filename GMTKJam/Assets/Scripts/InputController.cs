@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -30,32 +31,32 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
-    private PlayerActions inputActions;
-    private PlayerActions.MovementActions movementActions;
-
-    private Rigidbody2D rb;
-    private RaycastHit2D groundCastHit;
-    private bool isGrounded;
-    private bool isOnSlope;
-    private bool isJumping;
-    private bool canJump;
-    private bool canWalkOnSlope;
-
-    Vector2 targetVelocity;
-    private Vector2 colliderSize;
-
-    private float slopeDownAngle;
-    private float slopeSideAngle;
-    private float slopeDownAngleOld;
-    private Vector2 slopeNormalPerp;
-
     [SerializeField]
     private PhysicsMaterial2D friction;
 
     [SerializeField]
     private PhysicsMaterial2D noFriction;
 
+    private PlayerActions inputActions;
+    private PlayerActions.MovementActions movementActions;
+
+    private Vector2 targetVelocity;
     private Vector2 moveDirection;
+
+    private bool isGrounded;
+    private bool isOnSlope;
+    private bool isJumping;
+    private bool canJump;
+    private bool canWalkOnSlope;
+
+    private float slopeDownAngle;
+    private float slopeSideAngle;
+    private float slopeDownAngleOld;
+    private Vector2 slopeNormalPerp;
+
+    private Rigidbody2D rb;
+
+    private Transform spriteObject;
 
     private void Awake()
     {
@@ -64,7 +65,7 @@ public class InputController : MonoBehaviour
         movementActions = inputActions.Movement;
 
         rb = GetComponent<Rigidbody2D>();
-        colliderSize = GetComponent<CapsuleCollider2D>().size;
+        spriteObject = transform.GetChild(0);
     }
 
     private void Update()
@@ -210,7 +211,10 @@ public class InputController : MonoBehaviour
         }
     }
 
-    private void Jump(InputAction.CallbackContext ctx)
+    [SerializeField]
+    private float jumpAnimationSpeed = 0.3f;
+
+    private async void Jump(InputAction.CallbackContext ctx)
     {
         if (!canJump)
             return;
@@ -220,6 +224,12 @@ public class InputController : MonoBehaviour
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce((100f * Time.deltaTime) * jumpForce * Vector2.up, ForceMode2D.Impulse);
+
+        var jumpTween = spriteObject.DOScaleY(0.5f, jumpAnimationSpeed);
+        await jumpTween.AsyncWaitForCompletion();
+        jumpTween = spriteObject.DOScaleY(1f, jumpAnimationSpeed);
+        await jumpTween.AsyncWaitForCompletion();
+        DOTween.CompleteAll();
     }
 
     /// <summary>
