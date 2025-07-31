@@ -93,6 +93,8 @@ public class InputController : MonoBehaviour
     {
         SlopeCheck();
         Move();
+
+        Debug.DrawRay(transform.position, targetVelocity, Color.blue);
     }
 
     /// <summary>
@@ -222,8 +224,10 @@ public class InputController : MonoBehaviour
         canJump = false;
         isJumping = true;
 
-        rb.linearVelocity = Vector2.zero;
-        rb.AddForce((100f * Time.deltaTime) * jumpForce * Vector2.up, ForceMode2D.Impulse);
+        //rb.linearVelocity = Vector2.zero;
+        Vector2 jumpVel = (100f * Time.deltaTime) * jumpForce * Vector2.up;
+        rb.linearVelocity = new(rb.linearVelocity.x, jumpVel.y);
+        //rb.AddForce((100f * Time.deltaTime) * jumpForce * Vector2.up, ForceMode2D.Impulse);
 
         var jumpTween = spriteObject.DOScaleY(0.5f, jumpAnimationSpeed).SetEase(Ease.Flash);
         await jumpTween.AsyncWaitForCompletion();
