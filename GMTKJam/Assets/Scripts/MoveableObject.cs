@@ -32,10 +32,8 @@ public class MoveableObject : MonoBehaviour
         {
             particle.Play();
         }
-
-        //transform.DOShakePosition(1f);
         //Camera shake
-        Camera.main.transform.DOShakePosition(openDuration);
+        CameraShakeManager.Instance.Shake(openDuration);
     }
 
     public void Cleanup()
