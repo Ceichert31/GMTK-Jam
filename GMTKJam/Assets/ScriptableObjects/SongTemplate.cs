@@ -5,6 +5,6 @@ using UnityEngine.UI;
 public class SongTemplate : ScriptableObject
 {
     public string songName;
-    public Image songIcon;
+    public Sprite songIcon;
     public AudioClip songFile;
 }

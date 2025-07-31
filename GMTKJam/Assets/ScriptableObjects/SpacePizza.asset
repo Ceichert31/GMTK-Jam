@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: SpacePizza
   m_EditorClassIdentifier: 
   songName: SpacePizza
-  songLength: 0
-  songIcon: {fileID: 0}
+  songIcon: {fileID: -7097136219805146787, guid: 2327050a4bd04eb4d97df2421797157a, type: 3}
   songFile: {fileID: 8300000, guid: f7b44097f81b8324597fc17b392e5102, type: 3}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: KineticEnergy
   m_EditorClassIdentifier: 
   songName: Kinetic Energy
-  songIcon: {fileID: 0}
+  songIcon: {fileID: -5774752547333640276, guid: c39e2efc6f7a9c146a5a8d7a1dac1b22, type: 3}
   songFile: {fileID: 8300000, guid: 72604d85e86220742b1742dae8c335f6, type: 3}
