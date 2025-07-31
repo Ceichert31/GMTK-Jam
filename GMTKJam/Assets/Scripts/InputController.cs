@@ -57,6 +57,7 @@ public class InputController : MonoBehaviour
     private Rigidbody2D rb;
 
     private Transform spriteObject;
+    private SpriteRenderer playerRenderer;
 
     private void Awake()
     {
@@ -66,6 +67,7 @@ public class InputController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         spriteObject = transform.GetChild(0);
+        playerRenderer = spriteObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -87,14 +89,28 @@ public class InputController : MonoBehaviour
         {
             canJump = true;
         }
+
+        //Sprite flipping
+        if (moveDirection.x > 0)
+        {
+            playerRenderer.flipX = false;
+            spriteObject.DORotate(new Vector3(0, 0, -6f), 1f);
+        }
+        else if (moveDirection.x < 0)
+        {
+            playerRenderer.flipX = true;
+            spriteObject.DORotate(new Vector3(0, 0, 6f), 1f);
+        }
+        else
+        {
+            spriteObject.DORotate(new Vector3(0, 0, 0), 0.5f);
+        }
     }
 
     private void FixedUpdate()
     {
         SlopeCheck();
         Move();
-
-        Debug.DrawRay(transform.position, targetVelocity, Color.blue);
     }
 
     /// <summary>
@@ -103,9 +119,6 @@ public class InputController : MonoBehaviour
     private void Move()
     {
         Vector2 moveForce = (100 * Time.deltaTime) * movementSpeed * moveDirection;
-
-        //Add forces to rigidbody
-        //targetVelocity.Set(moveForce.x * (100 * Time.fixedDeltaTime), rb.linearVelocity.y);
 
         //On ground
         if (isGrounded && !isOnSlope && !isJumping)
@@ -229,32 +242,9 @@ public class InputController : MonoBehaviour
         rb.linearVelocity = new(rb.linearVelocity.x, jumpVel.y);
         //rb.AddForce((100f * Time.deltaTime) * jumpForce * Vector2.up, ForceMode2D.Impulse);
 
-        var jumpTween = spriteObject.DOScaleY(0.5f, jumpAnimationSpeed).SetEase(Ease.Flash);
+        var jumpTween = spriteObject.DOScaleY(1.5f, jumpAnimationSpeed).SetEase(Ease.Flash);
         await jumpTween.AsyncWaitForCompletion();
-        jumpTween = spriteObject.DOScaleY(1f, jumpAnimationSpeed);
-        await jumpTween.AsyncWaitForCompletion();
-        DOTween.CompleteAll();
-    }
-
-    /// <summary>
-    /// Gets the players input move direction
-    /// </summary>
-    /// <returns>A normalized movement direction</returns>
-    Vector2 MoveDirection()
-    {
-        Vector2 moveDirection = movementActions.Move.ReadValue<Vector2>();
-
-        //Sprite flipping
-        if (moveDirection.x > 0)
-        {
-            //playerRenderer.flipX = false;
-        }
-        else if (moveDirection.x < 0)
-        {
-            //playerRenderer.flipX = true;
-        }
-
-        return moveDirection.normalized;
+        spriteObject.DOScaleY(3f, jumpAnimationSpeed);
     }
 
     private void OnDrawGizmos()
