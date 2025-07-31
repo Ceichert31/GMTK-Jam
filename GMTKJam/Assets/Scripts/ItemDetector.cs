@@ -20,5 +20,9 @@ public class ItemDetector : MonoBehaviour
                 door.MoveObject();
             }
         }
+        else
+        {
+            door.warningTextUp();
+        }
     }
 }
