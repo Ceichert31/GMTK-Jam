@@ -59,6 +59,8 @@ public class InputController : MonoBehaviour
     private Transform spriteObject;
     private SpriteRenderer playerRenderer;
 
+    private MP3Controller mp3Controller;
+
     private void Awake()
     {
         //Setup movement
@@ -68,6 +70,8 @@ public class InputController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteObject = transform.GetChild(0);
         playerRenderer = spriteObject.GetComponent<SpriteRenderer>();
+
+        mp3Controller = transform.GetComponentInChildren<MP3Controller>();
     }
 
     private void Update()
@@ -255,11 +259,21 @@ public class InputController : MonoBehaviour
         inputActions.Enable();
 
         movementActions.Jump.performed += Jump;
+
+        //Mp3 controls
+        movementActions.Next.performed += (ctx) => mp3Controller.SkipForward();
+        movementActions.Previous.performed += (ctx) => mp3Controller.SkipBackward();
+        movementActions.Pause.performed += (ctx) => mp3Controller.Pause();
     }
 
     private void OnDisable()
     {
         inputActions.Disable();
         movementActions.Jump.performed -= Jump;
+
+        //Mp3 Controls
+        movementActions.Next.performed -= (ctx) => mp3Controller.SkipForward();
+        movementActions.Previous.performed -= (ctx) => mp3Controller.SkipBackward();
+        movementActions.Pause.performed -= (ctx) => mp3Controller.Pause();
     }
 }
