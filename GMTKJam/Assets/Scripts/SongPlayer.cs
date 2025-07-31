@@ -16,7 +16,7 @@ public class SongPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (!source.isPlaying && !isPaused)
+        if (!source.isPlaying && !isPaused && Application.isFocused)
         {
             //Send event
             endOfSongEvent.CallEvent(new());
