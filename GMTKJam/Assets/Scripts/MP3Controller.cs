@@ -8,26 +8,34 @@ public class MP3Controller : MonoBehaviour
     private BoolEvent skipEvent;
 
     [SerializeField]
-    private SongTemplate currentSong;
+    private BoolEventChannel pauseSongEvent;
+    private BoolEvent pauseEvent;
+
+    private bool isPaused;
 
     private void Awake()
     {
         skipEvent = new();
+        pauseEvent = new();
     }
 
     [Button("Skip Forward")]
     private void SkipForward()
     {
+        if (isPaused)
+            return;
+
         skipEvent.Value = true;
         skipSongEvent.CallEvent(skipEvent);
     }
-
-    private bool isPaused;
 
     [Button("Pause")]
     private void Pause()
     {
         isPaused = !isPaused;
+
+        pauseEvent.Value = isPaused;
+        pauseSongEvent.CallEvent(pauseEvent);
 
         if (isPaused)
         {
@@ -42,6 +50,9 @@ public class MP3Controller : MonoBehaviour
     [Button("Skip Backward")]
     private void SkipBackward()
     {
+        if (isPaused)
+            return;
+
         skipEvent.Value = false;
         skipSongEvent.CallEvent(skipEvent);
     }

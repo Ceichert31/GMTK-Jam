@@ -7,6 +7,8 @@ public class SongPlayer : MonoBehaviour
     [SerializeField]
     private VoidEventChannel endOfSongEvent;
 
+    private bool isPaused;
+
     private void Awake()
     {
         source = GetComponent<AudioSource>();
@@ -14,10 +16,24 @@ public class SongPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (!source.isPlaying)
+        if (!source.isPlaying && !isPaused)
         {
             //Send event
             endOfSongEvent.CallEvent(new());
+        }
+    }
+
+    public void PauseSong(BoolEvent ctx)
+    {
+        isPaused = ctx.Value;
+
+        if (isPaused)
+        {
+            source.Pause();
+        }
+        else
+        {
+            source.UnPause();
         }
     }
 
