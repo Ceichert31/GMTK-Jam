@@ -24,6 +24,6 @@ public class MoveableObject : MonoBehaviour
         transform.DOMove(endPosition, openDuration);
         //transform.DOShakePosition(1f);
         //Camera shake
-        //Camera.main.DOShakePosition(openDuration);
+        Camera.main.transform.DOShakePosition(openDuration);
     }
 }
