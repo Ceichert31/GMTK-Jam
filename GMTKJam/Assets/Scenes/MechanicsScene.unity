@@ -843,6 +843,7 @@ MonoBehaviour:
   objectID: Bridge
   openDuration: 1
   endPosition: {x: 0, y: -0.1, z: 0}
+  warningText: {fileID: 0}
   particle: {fileID: 1417449592}
 --- !u!1 &508724246
 GameObject:
@@ -1067,6 +1068,7 @@ MonoBehaviour:
   objectID: Gold
   openDuration: 1
   endPosition: {x: 0, y: 2.1, z: 0}
+  warningText: {fileID: 0}
   particle: {fileID: 0}
 --- !u!1 &567849769
 GameObject:
@@ -1833,11 +1835,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 0
   levelSpawnpointList:
-  - Song: {fileID: 11400000, guid: a277379f800fd4845bfeedd3d97ea4ce, type: 2}
-    spawnPoint: {fileID: 1684905367}
   - Song: {fileID: 11400000, guid: 5a7cebc8a07441f4d9af1bc716da956d, type: 2}
-    spawnPoint: {fileID: 629223610}
+    spawnPoint: {fileID: 1684905367}
   - Song: {fileID: 11400000, guid: 25a32e38f12c4af43b755f140c9af594, type: 2}
+    spawnPoint: {fileID: 629223610}
+  - Song: {fileID: 11400000, guid: e876bda0ce2305a4fa0bc297403a51a6, type: 2}
     spawnPoint: {fileID: 1937045263}
   loopLength: 0
   currentTime: 0
