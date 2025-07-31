@@ -225,7 +225,7 @@ public class InputController : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.AddForce((100f * Time.deltaTime) * jumpForce * Vector2.up, ForceMode2D.Impulse);
 
-        var jumpTween = spriteObject.DOScaleY(0.5f, jumpAnimationSpeed);
+        var jumpTween = spriteObject.DOScaleY(0.5f, jumpAnimationSpeed).SetEase(Ease.Flash);
         await jumpTween.AsyncWaitForCompletion();
         jumpTween = spriteObject.DOScaleY(1f, jumpAnimationSpeed);
         await jumpTween.AsyncWaitForCompletion();
