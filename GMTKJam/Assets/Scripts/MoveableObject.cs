@@ -1,6 +1,7 @@
 using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
+using TMPro;
 
 public class MoveableObject : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class MoveableObject : MonoBehaviour
 
     [SerializeField]
     private Vector3 endPosition;
+
+    [SerializeField]
+    private TextMeshPro warningText;
 
     [SerializeField]
     private ParticleSystem particle;
@@ -42,5 +46,10 @@ public class MoveableObject : MonoBehaviour
         {
             particle.Stop();
         }
+    }
+
+    public void warningTextUp() 
+    {
+        warningText.text = "You need the " + DoorID + " iteam";
     }
 }
