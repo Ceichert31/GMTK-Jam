@@ -13,17 +13,36 @@ public class MoveableObject : MonoBehaviour
     [SerializeField]
     private Vector3 endPosition;
 
+    [SerializeField]
+    private ParticleSystem particle;
+
     public string DoorID
     {
         get { return objectID; }
     }
 
+    private void Start() { }
+
     [Button]
     public void MoveObject()
     {
-        transform.DOMove(endPosition, openDuration);
+        transform.DOMove(endPosition, openDuration).OnComplete(Cleanup);
+
+        if (particle != null)
+        {
+            particle.Play();
+        }
+
         //transform.DOShakePosition(1f);
         //Camera shake
         Camera.main.transform.DOShakePosition(openDuration);
+    }
+
+    public void Cleanup()
+    {
+        if (particle != null)
+        {
+            particle.Stop();
+        }
     }
 }
