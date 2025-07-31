@@ -19,8 +19,7 @@ public class MP3Controller : MonoBehaviour
         pauseEvent = new();
     }
 
-    [Button("Skip Forward")]
-    private void SkipForward()
+    public void SkipForward()
     {
         if (isPaused)
             return;
@@ -29,8 +28,7 @@ public class MP3Controller : MonoBehaviour
         skipSongEvent.CallEvent(skipEvent);
     }
 
-    [Button("Pause")]
-    private void Pause()
+    public void Pause()
     {
         isPaused = !isPaused;
 
@@ -47,8 +45,7 @@ public class MP3Controller : MonoBehaviour
         }
     }
 
-    [Button("Skip Backward")]
-    private void SkipBackward()
+    public void SkipBackward()
     {
         if (isPaused)
             return;
