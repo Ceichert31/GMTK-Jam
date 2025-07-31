@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ItemDetector : MonoBehaviour
 {
-    private LockedDoor door;
+    private MoveableObject door;
 
     private void Start()
     {
-        door = GetComponentInParent<LockedDoor>();
+        door = GetComponentInParent<MoveableObject>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +17,7 @@ public class ItemDetector : MonoBehaviour
             if (string.Equals(door.DoorID, collectable.ID))
             {
                 collectable.Delete();
-                door.OpenDoor();
+                door.MoveObject();
             }
         }
     }

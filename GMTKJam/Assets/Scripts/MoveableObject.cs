@@ -2,26 +2,26 @@ using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class LockedDoor : MonoBehaviour
+public class MoveableObject : MonoBehaviour
 {
     [SerializeField]
-    private string doorID;
+    private string objectID;
 
     [SerializeField]
     private float openDuration = 1f;
 
     [SerializeField]
-    private float openYPosition;
+    private Vector3 endPosition;
 
     public string DoorID
     {
-        get { return doorID; }
+        get { return objectID; }
     }
 
     [Button]
-    public void OpenDoor()
+    public void MoveObject()
     {
-        transform.DOMoveY(openYPosition, openDuration);
+        transform.DOMove(endPosition, openDuration);
         //transform.DOShakePosition(1f);
         //Camera shake
         //Camera.main.DOShakePosition(openDuration);
