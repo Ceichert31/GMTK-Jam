@@ -738,7 +738,7 @@ MonoBehaviour:
   levelSpawnpointList:
   - Song: {fileID: 11400000, guid: a277379f800fd4845bfeedd3d97ea4ce, type: 2}
     spawnPoint: {fileID: 1684905367}
-  - Song: {fileID: 11400000, guid: 25a32e38f12c4af43b755f140c9af594, type: 2}
+  - Song: {fileID: 11400000, guid: 5a7cebc8a07441f4d9af1bc716da956d, type: 2}
     spawnPoint: {fileID: 629223610}
   loopLength: 0
   currentTime: 0
