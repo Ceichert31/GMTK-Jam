@@ -1,7 +1,7 @@
 using DG.Tweening;
 using NaughtyAttributes;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class MoveableObject : MonoBehaviour
 {
@@ -15,41 +15,70 @@ public class MoveableObject : MonoBehaviour
     private Vector3 endPosition;
 
     [SerializeField]
-    private TextMeshPro warningText;
+    private TextMeshProUGUI warningText;
+
+    [SerializeField]
+    private float textPopupSpeed = 0.25f;
 
     [SerializeField]
     private ParticleSystem particle;
+
+    private bool hasParticle;
+    private bool hasText;
 
     public string DoorID
     {
         get { return objectID; }
     }
 
-    private void Start() { }
+    private void Start()
+    {
+        hasParticle = particle;
+        hasText = warningText;
+    }
 
     [Button]
     public void MoveObject()
     {
         transform.DOMove(endPosition, openDuration).OnComplete(Cleanup);
 
-        if (particle != null)
+        if (hasParticle)
         {
             particle.Play();
         }
+
+        if (hasText)
+        {
+            warningText.text = string.Empty;
+        }
+
         //Camera shake
         CameraShakeManager.Instance.Shake(openDuration);
     }
 
     public void Cleanup()
     {
-        if (particle != null)
+        if (hasParticle)
         {
             particle.Stop();
         }
     }
 
-    public void warningTextUp() 
+    public void WarningTextUp()
     {
-        warningText.text = "You need the " + DoorID + " iteam";
+        if (!hasText)
+            return;
+
+        warningText.transform.DOScaleY(1f, textPopupSpeed);
+        warningText.text = "You need the " + DoorID + " item";
+    }
+
+    public void WarningTextDown()
+    {
+        if (!hasText)
+            return;
+
+        warningText.transform.DOScaleY(0f, textPopupSpeed);
+        warningText.text = string.Empty;
     }
 }
