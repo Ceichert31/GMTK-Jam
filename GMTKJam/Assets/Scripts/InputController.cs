@@ -11,6 +11,9 @@ public class InputController : MonoBehaviour
     private float movementSpeed = 50f;
 
     [SerializeField]
+    private float slopeSpeed = 10f;
+
+    [SerializeField]
     private float jumpForce = 150f;
 
     [SerializeField]
@@ -133,8 +136,8 @@ public class InputController : MonoBehaviour
         else if (isGrounded && isOnSlope && canWalkOnSlope && !isJumping)
         {
             targetVelocity.Set(
-                movementSpeed * slopeNormalPerp.x * -moveDirection.x,
-                movementSpeed * slopeNormalPerp.y * -moveDirection.x
+                slopeSpeed * slopeNormalPerp.x * -moveDirection.x,
+                slopeSpeed * slopeNormalPerp.y * -moveDirection.x
             );
 
             Debug.DrawRay(transform.position, targetVelocity.normalized, Color.coral);
