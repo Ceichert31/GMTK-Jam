@@ -5,10 +5,18 @@ using UnityEngine;
 public class LockedDoor : MonoBehaviour
 {
     [SerializeField]
+    private string doorID;
+
+    [SerializeField]
     private float openDuration = 1f;
 
     [SerializeField]
     private float openYPosition;
+
+    public string DoorID
+    {
+        get { return doorID; }
+    }
 
     [Button]
     public void OpenDoor()

@@ -12,7 +12,13 @@ public class ItemDetector : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Check if player has key and open door
-
-        door.OpenDoor();
+        if (collision.TryGetComponent(out ICollectable collectable))
+        {
+            if (string.Equals(door.DoorID, collectable.ID))
+            {
+                collectable.Delete();
+                door.OpenDoor();
+            }
+        }
     }
 }
