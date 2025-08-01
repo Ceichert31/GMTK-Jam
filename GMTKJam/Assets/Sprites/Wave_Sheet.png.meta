@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d5590bcf87b0b77e4a5155e5aed4e3e6
+guid: ad938d8941078ac4994de6910f94e588
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7929217968616871707
-    second: mp3Player_01_0
+      213: 4777702216827948514
+    second: Wave_Sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 49
+  spritePixelsToUnits: 88
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +100,27 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mp3Player_01_0
+      name: Wave_Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 81
-        height: 49
+        width: 35
+        height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: 17.5, y: 44}
+        - {x: -17.5, y: 44}
+        - {x: -17.5, y: -44}
+        - {x: 17.5, y: -44}
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5e862f1b442c5f190800000000000000
-      internalID: -7929217968616871707
+      spriteID: 2ed40a45adecd4240800000000000000
+      internalID: 4777702216827948514
       vertices: []
       indices: 
       edges: []
@@ -125,7 +129,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 621ecba6e3b805544ba6a7172325b032
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +139,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mp3Player_01_0: -7929217968616871707
+      Wave_Sheet_0: 4777702216827948514
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
