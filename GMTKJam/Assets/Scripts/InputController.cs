@@ -8,13 +8,13 @@ public class InputController : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField]
-    private float movementSpeed => StatsManager.instance.currentPlayerStats.speed;
+    private float movementSpeed = 50f;
 
     [SerializeField]
     private float slopeSpeed = 10f;
 
     [SerializeField]
-    private float jumpForce => StatsManager.instance.currentPlayerStats.jumpForce;
+    private float jumpForce = 150f;
 
     [SerializeField]
     private float slopeCheckLength = 1f;
