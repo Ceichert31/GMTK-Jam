@@ -7,7 +7,13 @@ public class BreakableSurface : MonoBehaviour
     [SerializeField]
     private int playerLayer;
 
-    private int health = 5;
+    private float health = 5;
+
+    [SerializeField]
+    private float bounceHeight = 15;
+
+    [SerializeField]
+    private GameObject damageParticle;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -17,8 +23,7 @@ public class BreakableSurface : MonoBehaviour
         Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
         float speed = rb.linearVelocity.magnitude;
         speed = Mathf.RoundToInt(speed);
-        speed = Mathf.Clamp(speed, 1, UInt64.MaxValue);
-        health -= (int)speed;
+        health -= speed;
 
         if (health <= 0)
         {
@@ -28,8 +33,8 @@ public class BreakableSurface : MonoBehaviour
             return;
         }
 
-        rb.AddForceY(100, ForceMode2D.Impulse);
-        collision.gameObject.transform.DOShakePosition(0.3f);
+        Instantiate(damageParticle, (Vector3)collision.contacts[0].point, Quaternion.identity);
+        rb.AddForceY(bounceHeight, ForceMode2D.Impulse);
 
         //Send player upwards if not fully broken
         //decrease health and break

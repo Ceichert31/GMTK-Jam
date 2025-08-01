@@ -40,6 +40,12 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private PhysicsMaterial2D noFriction;
 
+    [SerializeField]
+    private ParticleSystem speedParticle;
+
+    [SerializeField]
+    private float speedParticleShowThreshold = 5f;
+
     private PlayerActions inputActions;
     private PlayerActions.MovementActions movementActions;
 
@@ -101,16 +107,16 @@ public class InputController : MonoBehaviour
         if (moveDirection.x > 0)
         {
             playerRenderer.flipX = false;
-            spriteObject.DORotate(new Vector3(0, 0, -6f), 1f);
+            //spriteObject.DORotate(new Vector3(0, 0, -6f), 1f);
         }
         else if (moveDirection.x < 0)
         {
             playerRenderer.flipX = true;
-            spriteObject.DORotate(new Vector3(0, 0, 6f), 1f);
+            //spriteObject.DORotate(new Vector3(0, 0, 6f), 1f);
         }
         else
         {
-            spriteObject.DORotate(new Vector3(0, 0, 0), 0.5f);
+            //spriteObject.DORotate(new Vector3(0, 0, 0), 0.5f);
         }
     }
 
@@ -147,6 +153,15 @@ public class InputController : MonoBehaviour
         {
             targetVelocity.Set(moveForce.x, rb.linearVelocity.y);
             rb.linearVelocity = targetVelocity;
+        }
+
+        if (rb.linearVelocity.magnitude >= speedParticleShowThreshold)
+        {
+            speedParticle.Play();
+        }
+        else
+        {
+            speedParticle.Stop();
         }
     }
 
