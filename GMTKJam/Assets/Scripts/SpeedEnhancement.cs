@@ -1,16 +1,26 @@
 using UnityEngine;
 
-public class Powerup : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+/* TODO:
+ * 
+ * Make player stats public and modifyable DONE
+ * Make it so that the player stats are reset to what they were besides the modifier corresponding to each level(this will be done via some sort of array list) DONE
+ * Create seperate enhancement scripts for each needed enhancement
+ * Finish creating speed level
+ * 
+ */
+public class SpeedEnhancement : MonoBehaviour, IEnhancable
+{
+    [SerializeField] float speedIncreaseAmount;
+    public void EnhancePlayer()
     {
-        
+        StatsManager.instance.enhancedPlayerStats.speed += speedIncreaseAmount;
+        StatsManager.instance.UpdateStats();
+        GameObject.Destroy(gameObject);
     }
+}
+
+public interface IEnhancable
+{
+    void EnhancePlayer();
 }
