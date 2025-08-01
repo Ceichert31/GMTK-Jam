@@ -68,7 +68,7 @@ public class InputController : MonoBehaviour
     private Transform spriteObject;
     private SpriteRenderer playerRenderer;
 
-    private MP3Controller mp3Controller;
+    //private MP3Controller mp3Controller;
 
     public float Speed
     {
@@ -85,7 +85,7 @@ public class InputController : MonoBehaviour
         spriteObject = transform.GetChild(0);
         playerRenderer = spriteObject.GetComponent<SpriteRenderer>();
 
-        mp3Controller = transform.GetComponentInChildren<MP3Controller>();
+        //mp3Controller = transform.GetComponentInChildren<MP3Controller>();
     }
 
     private void Update()
@@ -284,9 +284,9 @@ public class InputController : MonoBehaviour
         movementActions.Jump.performed += Jump;
 
         //Mp3 controls
-        movementActions.Next.performed += (ctx) => mp3Controller.SkipForward();
+        //movementActions.Next.performed += (ctx) => mp3Controller.SkipForward();
         //movementActions.Previous.performed += (ctx) => mp3Controller.SkipBackward();
-        movementActions.Pause.performed += (ctx) => mp3Controller.Pause();
+        //movementActions.Pause.performed += (ctx) => mp3Controller.Pause();
     }
 
     private void OnDisable()
@@ -295,8 +295,8 @@ public class InputController : MonoBehaviour
         movementActions.Jump.performed -= Jump;
 
         //Mp3 Controls
-        movementActions.Next.performed -= (ctx) => mp3Controller.SkipForward();
+        // movementActions.Next.performed -= (ctx) => mp3Controller.SkipForward();
         //movementActions.Previous.performed -= (ctx) => mp3Controller.SkipBackward();
-        movementActions.Pause.performed -= (ctx) => mp3Controller.Pause();
+        //movementActions.Pause.performed -= (ctx) => mp3Controller.Pause();
     }
 }

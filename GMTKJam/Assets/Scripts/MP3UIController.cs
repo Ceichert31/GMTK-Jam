@@ -9,6 +9,12 @@ public class MP3UIController : MonoBehaviour
     //Update song duration, icon, name, and progress bar
 
     [SerializeField]
+    private BoolEventChannel skipSongEvent;
+
+    [SerializeField]
+    private BoolEventChannel pauseSongEvent;
+
+    [SerializeField]
     private RectTransform fillBar;
 
     [SerializeField]
@@ -73,33 +79,58 @@ public class MP3UIController : MonoBehaviour
         fillBar.anchoredPosition = endPos;
     }
 
+    public void Skip()
+    {
+        skipSongEvent.CallEvent(new());
+    }
+
+    bool isPaused;
+    BoolEvent pauseEvent;
+
+    public void Pause()
+    {
+        isPaused = !isPaused;
+
+        pauseEvent.Value = isPaused;
+        pauseSongEvent.CallEvent(pauseEvent);
+
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
+
     public void ExpandPlayer()
     {
-        mp3Player.DOAnchorPosY(-245, 0.3f);
+        mp3Player.DOAnchorPosY(-245, 0.3f).SetUpdate(true);
     }
 
     public void ShrinkPlayer()
     {
-        mp3Player.DOAnchorPosY(-35, 0.3f);
+        mp3Player.DOAnchorPosY(-35, 0.3f).SetUpdate(true);
     }
 
     public void EnterPauseButton()
     {
-        pauseButton.DOScale(1.3f, 0.3f);
+        pauseButton.DOScale(1.3f, 0.3f).SetUpdate(true);
     }
 
     public void ExitPauseButton()
     {
-        pauseButton.DOScale(1f, 0.3f);
+        pauseButton.DOScale(1f, 0.3f).SetUpdate(true);
     }
 
     public void EnterSkipButton()
     {
-        forwardButton.DOScale(1.3f, 0.3f);
+        forwardButton.DOScale(1.3f, 0.3f).SetUpdate(true);
     }
 
     public void ExitSkipButton()
     {
-        forwardButton.DOScale(1f, 0.3f);
+        forwardButton.DOScale(1f, 0.3f).SetUpdate(true);
     }
 }
