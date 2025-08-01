@@ -62,19 +62,9 @@ public class LevelController : MonoBehaviour
     /// <param name="ctx"></param>
     public void ChangeLevel(BoolEvent ctx)
     {
-        if (ctx.Value)
-        {
-            //Move right
-            //Prevent current level from going out of scope (rolls over to 0)
-            currentLevel++;
-        }
-        else
-        {
-            //Move left
-            currentLevel--;
-        }
+        currentLevel++;
 
-        currentLevel = Mathf.Clamp(currentLevel, 0, levelSpawnpointList.Count - 1);
+        currentLevel %= levelSpawnpointList.Count;
 
         //Switch to current level
         GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel]

@@ -265,7 +265,7 @@ public class InputController : MonoBehaviour
 
         //Mp3 controls
         movementActions.Next.performed += (ctx) => mp3Controller.SkipForward();
-        movementActions.Previous.performed += (ctx) => mp3Controller.SkipBackward();
+        //movementActions.Previous.performed += (ctx) => mp3Controller.SkipBackward();
         movementActions.Pause.performed += (ctx) => mp3Controller.Pause();
     }
 
@@ -276,7 +276,7 @@ public class InputController : MonoBehaviour
 
         //Mp3 Controls
         movementActions.Next.performed -= (ctx) => mp3Controller.SkipForward();
-        movementActions.Previous.performed -= (ctx) => mp3Controller.SkipBackward();
+        //movementActions.Previous.performed -= (ctx) => mp3Controller.SkipBackward();
         movementActions.Pause.performed -= (ctx) => mp3Controller.Pause();
     }
 }
