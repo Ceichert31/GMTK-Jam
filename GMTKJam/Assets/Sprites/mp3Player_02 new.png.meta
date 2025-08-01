@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d072c56157ec3492c82094fd25554834
+guid: 5f4c56897a27bc044b45c6fe031b9b1c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1347205449914486507
-    second: mp3Player_02_0
+      213: -4715555078852833776
+    second: mp3Player_02 new_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mp3Player_02_0
+      name: mp3Player_02 new_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bee8f99083c32b210800000000000000
-      internalID: 1347205449914486507
+      spriteID: 01e003ec3abfe8eb0800000000000000
+      internalID: -4715555078852833776
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mp3Player_02_0: 1347205449914486507
+      mp3Player_02 new_0: -4715555078852833776
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
