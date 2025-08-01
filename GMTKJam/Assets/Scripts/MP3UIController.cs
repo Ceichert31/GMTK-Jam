@@ -1,3 +1,5 @@
+using System.Collections;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,13 +9,10 @@ public class MP3UIController : MonoBehaviour
     //Update song duration, icon, name, and progress bar
 
     [SerializeField]
-    private Image fillBar;
+    private RectTransform fillBar;
 
     [SerializeField]
     private Image songIcon;
-
-    [SerializeField]
-    private TextMeshProUGUI songLengthText;
 
     [SerializeField]
     private TextMeshProUGUI songNameText;
@@ -24,8 +23,6 @@ public class MP3UIController : MonoBehaviour
     private void Update()
     {
         songTimer += Time.deltaTime;
-        fillBar.fillAmount = songTimer / songLength;
-        songLengthText.text = Mathf.RoundToInt(songTimer).ToString();
 
         if (songTimer >= songLength)
         {
@@ -37,7 +34,7 @@ public class MP3UIController : MonoBehaviour
     {
         //Reset song timer
         songTimer = 0;
-        fillBar.fillAmount = 0;
+        fillBar.anchoredPosition = startPos;
     }
 
     public void UpdateSongInfo(SongEvent ctx)
@@ -46,5 +43,24 @@ public class MP3UIController : MonoBehaviour
         songNameText.text = ctx.SongValue.songName;
         songLength = ctx.SongValue.songFile.length;
         songIcon.sprite = ctx.SongValue.songIcon;
+        StartCoroutine(MoveSongBar());
+    }
+
+    Vector2 startPos = new Vector2(-276, 3.300005f);
+    Vector2 endPos = new Vector2(0, 3.300005f);
+
+    private IEnumerator MoveSongBar()
+    {
+        while (songTimer < songLength)
+        {
+            Vector2 intVector = Vector2.Lerp(startPos, endPos, songTimer / songLength);
+
+            intVector.Set(Mathf.RoundToInt(intVector.x), Mathf.RoundToInt(intVector.y));
+
+            fillBar.anchoredPosition = intVector;
+
+            yield return null;
+        }
+        fillBar.anchoredPosition = endPos;
     }
 }
