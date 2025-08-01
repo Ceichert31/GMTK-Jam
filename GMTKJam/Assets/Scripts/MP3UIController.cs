@@ -17,6 +17,15 @@ public class MP3UIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI songNameText;
 
+    [SerializeField]
+    private RectTransform mp3Player;
+
+    [SerializeField]
+    private RectTransform pauseButton;
+
+    [SerializeField]
+    private RectTransform forwardButton;
+
     private float songTimer;
     private float songLength;
 
@@ -62,5 +71,35 @@ public class MP3UIController : MonoBehaviour
             yield return null;
         }
         fillBar.anchoredPosition = endPos;
+    }
+
+    public void ExpandPlayer()
+    {
+        mp3Player.DOAnchorPosY(-245, 0.3f);
+    }
+
+    public void ShrinkPlayer()
+    {
+        mp3Player.DOAnchorPosY(-35, 0.3f);
+    }
+
+    public void EnterPauseButton()
+    {
+        pauseButton.DOScale(1.3f, 0.3f);
+    }
+
+    public void ExitPauseButton()
+    {
+        pauseButton.DOScale(1f, 0.3f);
+    }
+
+    public void EnterSkipButton()
+    {
+        forwardButton.DOScale(1.3f, 0.3f);
+    }
+
+    public void ExitSkipButton()
+    {
+        forwardButton.DOScale(1f, 0.3f);
     }
 }
