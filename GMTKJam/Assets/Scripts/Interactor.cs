@@ -16,5 +16,11 @@ public class Interactor : MonoBehaviour
             collision.transform.localPosition = Vector2.zero;
             collectable.Collect();
         }
+
+        //Repurposed for powerups as well
+        if(collision.TryGetComponent(out IEnhancable enhancement))
+        {
+            enhancement.EnhancePlayer();
+        }
     }
 }
