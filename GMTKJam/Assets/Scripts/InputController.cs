@@ -70,6 +70,11 @@ public class InputController : MonoBehaviour
 
     private MP3Controller mp3Controller;
 
+    public float Speed
+    {
+        get => rb.linearVelocity.magnitude;
+    }
+
     private void Awake()
     {
         //Setup movement

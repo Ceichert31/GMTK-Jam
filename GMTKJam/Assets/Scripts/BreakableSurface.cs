@@ -15,21 +15,27 @@ public class BreakableSurface : MonoBehaviour
     [SerializeField]
     private GameObject damageParticle;
 
+    [SerializeField]
+    private ParticleSystem breakParticle;
+
+    public float damage;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer != playerLayer)
             return;
 
+        //Rework to get speed before colliding
         Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
         float speed = rb.linearVelocity.magnitude;
-        speed = Mathf.RoundToInt(speed);
+        damage = speed;
         health -= speed;
 
         if (health <= 0)
         {
+            breakParticle.Play();
             //Break
             Destroy(gameObject);
-
             return;
         }
 
