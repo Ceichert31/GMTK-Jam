@@ -43344,6 +43344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1249572272}
   - component: {fileID: 1249572271}
+  - component: {fileID: 1249572273}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43379,6 +43380,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1249572273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249572270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f02b154e07a4864ca47c016242da7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevelIndex: 0
+  initalPlayerStats:
+    speed: 5
+    jumpForce: 15
+  enhancedPlayerStats:
+    speed: 0
+    jumpForce: 0
+  currentPlayerStats:
+    speed: 0
+    jumpForce: 0
 --- !u!1 &1257290084
 GameObject:
   m_ObjectHideFlags: 0
@@ -43594,6 +43617,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1249572273}
+        m_TargetAssemblyTypeName: StatsManager, Assembly-CSharp
+        m_MethodName: OnChangeLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1338535492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43702,9 +43737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde0b0596a2b52446b6d3fdd68849da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
   slopeSpeed: 10
-  jumpForce: 15
   slopeCheckLength: 0.3
   groundCheckPosition: {fileID: 1995747424}
   slopeCheckPosition: {fileID: 332115749}
@@ -88175,6 +88208,63 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &5456739350490092662
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 42.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -54.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 428800845584151796, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869461476310716013, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
+      propertyPath: m_Name
+      value: Speed Powerup
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ebd7d6a8c1696994c9a9361a99cc63da, type: 3}
 --- !u!114 &5468936383702362226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88809,6 +88899,7 @@ SceneRoots:
   - {fileID: 1389572002}
   - {fileID: 1024626243}
   - {fileID: 855321381}
+  - {fileID: 5456739350490092662}
   - {fileID: 567849773}
   - {fileID: 1438252914783749099}
   - {fileID: 865585987}
