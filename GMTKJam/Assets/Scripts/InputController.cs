@@ -69,11 +69,7 @@ public class InputController : MonoBehaviour
     private SpriteRenderer playerRenderer;
 
     //private MP3Controller mp3Controller;
-
-    public float Speed
-    {
-        get => rb.linearVelocity.magnitude;
-    }
+    private Animator playerAnimator;
 
     private void Awake()
     {
@@ -85,8 +81,12 @@ public class InputController : MonoBehaviour
         spriteObject = transform.GetChild(0);
         playerRenderer = spriteObject.GetComponent<SpriteRenderer>();
 
+        playerAnimator = GetComponent<Animator>();
+
         //mp3Controller = transform.GetComponentInChildren<MP3Controller>();
     }
+
+    private Vector2 previousPosition;
 
     private void Update()
     {
@@ -103,24 +103,37 @@ public class InputController : MonoBehaviour
             isJumping = false;
         }
 
+        //Check last position and compare to current position to determine if falling
+
+        if (transform.position.y < previousPosition.y)
+        {
+            playerAnimator.SetBool("IsFalling", true);
+        }
+        previousPosition = transform.position;
+
         if (isGrounded && !isJumping)
         {
             canJump = true;
+            playerAnimator.SetBool("IsFalling", false);
         }
 
         //Sprite flipping
         if (moveDirection.x > 0)
         {
             playerRenderer.flipX = false;
+            playerAnimator.SetBool("IsWalking", true);
             //spriteObject.DORotate(new Vector3(0, 0, -6f), 1f);
         }
         else if (moveDirection.x < 0)
         {
             playerRenderer.flipX = true;
+            playerAnimator.SetBool("IsWalking", true);
             //spriteObject.DORotate(new Vector3(0, 0, 6f), 1f);
         }
         else
         {
+            playerAnimator.SetBool("IsWalking", false);
+            //Change sprite to face camera
             //spriteObject.DORotate(new Vector3(0, 0, 0), 0.5f);
         }
     }
@@ -256,7 +269,7 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private float jumpAnimationSpeed = 0.3f;
 
-    private async void Jump(InputAction.CallbackContext ctx)
+    private void Jump(InputAction.CallbackContext ctx)
     {
         if (!canJump)
             return;
@@ -267,9 +280,11 @@ public class InputController : MonoBehaviour
         //rb.linearVelocity = Vector2.zero;
         rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
 
-        var jumpTween = spriteObject.DOScaleY(1.5f, jumpAnimationSpeed).SetEase(Ease.Flash);
-        await jumpTween.AsyncWaitForCompletion();
-        spriteObject.DOScaleY(3f, jumpAnimationSpeed);
+        playerAnimator.SetTrigger("Jump");
+
+        //var jumpTween = spriteObject.DOScaleY(1.4f, jumpAnimationSpeed).SetEase(Ease.Flash);
+        //await jumpTween.AsyncWaitForCompletion();
+        //spriteObject.DOScaleY(1.7f, jumpAnimationSpeed);
     }
 
     private void OnDrawGizmos()
