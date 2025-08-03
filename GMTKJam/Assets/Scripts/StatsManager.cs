@@ -72,7 +72,7 @@ public class StatsManager : MonoBehaviour
                 break;
             //Jump Force
             case 3:
-                currentPlayerStats.jumpForce = amount;
+                currentPlayerStats.jumpForce += amount;
                 break;
             case 4:
                 break;
