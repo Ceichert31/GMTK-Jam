@@ -107,7 +107,7 @@ public class LevelController : MonoBehaviour
         Debug.Log(currentLevelIndex);
         switch (currentLevel)
         {
-            case 1:
+            case 0:
                 AlbumController.Instance.hasAlbumOne = true;
                 break;
             case 2:
