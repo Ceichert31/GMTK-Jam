@@ -1263,6 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31ff1bd22c011e4c887e4020206d139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completedMinigameEvent: {fileID: 11400000, guid: dd424c08d227f2e48adb230c2e85533e, type: 2}
   collectableLayer: 7
   collectableCrystal: {fileID: 1338622814}
   originalPosition: {fileID: 676592702}
@@ -2008,7 +2009,7 @@ GameObject:
   - component: {fileID: 1338535489}
   - component: {fileID: 1338535490}
   - component: {fileID: 1338535491}
-  - component: {fileID: 1338535492}
+  - component: {fileID: 1338535493}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -2106,7 +2107,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1338535492
+--- !u!114 &1338535493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2118,13 +2119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c699cd94647b1394d977d42a2d2d1135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: 70f0b57e91f65ec40b3e1ceda8bd9b09, type: 2}
+  eventChannel: {fileID: 11400000, guid: dd424c08d227f2e48adb230c2e85533e, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1338535490}
         m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
-        m_MethodName: EndOfSong
+        m_MethodName: CompletedSong
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

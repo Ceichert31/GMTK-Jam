@@ -78,6 +78,14 @@ public class LevelController : MonoBehaviour
         //Update UI
     }
 
+    public void CompletedSong(VoidEvent ctx)
+    {
+        //Remove song from playlist and flag this one as complete
+        levelSpawnpointList.Remove(levelSpawnpointList[currentLevel]);
+
+        //Send signal that level was complete
+    }
+
     /// <summary>
     /// Sets all variables to initialize a level
     /// </summary>

@@ -5,6 +5,9 @@ public class DetectCrystal : MonoBehaviour, IResetable
     //Bass boost song after getting crystal
 
     [SerializeField]
+    private VoidEventChannel completedMinigameEvent;
+
+    [SerializeField]
     private int collectableLayer;
 
     private GameObject crystal;
@@ -30,6 +33,8 @@ public class DetectCrystal : MonoBehaviour, IResetable
 
             collision.gameObject.SetActive(false);
             crystal.SetActive(true);
+
+            completedMinigameEvent.CallEvent(new());
         }
     }
 
