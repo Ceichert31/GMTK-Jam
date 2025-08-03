@@ -71,6 +71,12 @@ public class InputController : MonoBehaviour
     //private MP3Controller mp3Controller;
     private Animator playerAnimator;
 
+    [SerializeField]
+    private AudioSource sfxPlayer;
+
+    [SerializeField]
+    private AudioClip jumpSFX;
+
     private void Awake()
     {
         //Setup movement
@@ -281,6 +287,7 @@ public class InputController : MonoBehaviour
         rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
 
         playerAnimator.SetTrigger("Jump");
+        sfxPlayer.PlayOneShot(jumpSFX);
 
         //var jumpTween = spriteObject.DOScaleY(1.4f, jumpAnimationSpeed).SetEase(Ease.Flash);
         //await jumpTween.AsyncWaitForCompletion();

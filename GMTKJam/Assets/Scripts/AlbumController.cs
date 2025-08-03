@@ -21,6 +21,11 @@ public class AlbumController : MonoBehaviour
 
     public static AlbumController Instance;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void CheckCollected()
     {
         if (hasAlbumOne)
