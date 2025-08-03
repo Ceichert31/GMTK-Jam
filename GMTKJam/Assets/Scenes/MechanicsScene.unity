@@ -2146,7 +2146,7 @@ Transform:
   m_GameObject: {fileID: 1242052054}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.66, y: -15.35, z: 0}
+  m_LocalPosition: {x: -45.66, y: -13.5, z: 0}
   m_LocalScale: {x: 18.289, y: 0, z: 18.289}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65103,37 +65103,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1961761780
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1961761781}
-  m_Layer: 0
-  m_Name: LevelReset
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1961761781
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961761780}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2006896316
 GameObject:
   m_ObjectHideFlags: 0
@@ -66609,34 +66578,6 @@ RectTransform:
   m_AnchoredPosition: {x: 106.06, y: -105.7}
   m_SizeDelta: {x: 134, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5074491669103200946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7104645683632381722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d086a5eb76421b40853dcaddd29c140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: 7a5bd4eab841c8b41bef52f25829c6da, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4478979021249932628}
-        m_TargetAssemblyTypeName: MP3UIController, Assembly-CSharp
-        m_MethodName: UpdateSongInfo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5199070094400870549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66978,7 +66919,7 @@ GameObject:
   - component: {fileID: 2776933986354175788}
   - component: {fileID: 520694163396706797}
   - component: {fileID: 4478979021249932628}
-  - component: {fileID: 5074491669103200946}
+  - component: {fileID: 7104645683632381723}
   m_Layer: 5
   m_Name: MP3Canvas
   m_TagString: Untagged
@@ -66986,6 +66927,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7104645683632381723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7104645683632381722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d086a5eb76421b40853dcaddd29c140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 7a5bd4eab841c8b41bef52f25829c6da, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4478979021249932628}
+        m_TargetAssemblyTypeName: MP3UIController, Assembly-CSharp
+        m_MethodName: UpdateSongInfo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &7152957569743998020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -67109,7 +67078,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1249572272}
   - {fileID: 1421110447}
-  - {fileID: 1961761781}
   - {fileID: 1338535489}
   - {fileID: 995728674}
   - {fileID: 8787521706776179754}

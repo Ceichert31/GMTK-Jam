@@ -20,6 +20,7 @@ public class CollectCrysal : MonoBehaviour, IResetable
         if (collision.gameObject.layer == playerLayer)
         {
             arrow.transform.DOScaleY(18, 0.5f);
+            CameraShakeManager.Instance.Shake(1f, 2f);
         }
     }
 }
