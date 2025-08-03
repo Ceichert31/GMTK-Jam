@@ -105,18 +105,18 @@ public class LevelController : MonoBehaviour
         currentLevels.RemoveAt(currentLevelIndex);
 
         Debug.Log(currentLevelIndex);
-        switch (currentLevelIndex)
+        switch (currentLevel)
         {
-            case 0:
+            case 1:
                 AlbumController.Instance.hasAlbumOne = true;
                 break;
-            case 1:
+            case 2:
                 AlbumController.Instance.hasAlbumTwo = true;
                 break;
-            case 2:
+            case 3:
                 AlbumController.Instance.hasAlbumThree = true;
                 break;
-            case 3:
+            case 4:
                 AlbumController.Instance.hasAlbumFour = true;
                 break;
         }
