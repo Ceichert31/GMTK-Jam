@@ -44,14 +44,10 @@ public class LevelController : MonoBehaviour
         currentTime += Time.deltaTime;
     }
 
-    //public void EndOfSong(VoidEvent ctx)
-    //{
-    //    SetupLevel(currentLevel);
-    //    //Switch to current level
-    //    GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel]
-    //        .spawnPoint
-    //        .position;
-    //}
+    public void EndOfSong(VoidEvent ctx)
+    {
+        ChangeLevel(new());
+    }
 
     /// <summary>
     /// Advances to the next level
@@ -68,7 +64,7 @@ public class LevelController : MonoBehaviour
 
         SetupLevel(currentLevel);
 
-        if (currentLevel == levelSpawnpointList.Count)
+        if (currentLevel == levelSpawnpointList.Count - 1)
         {
             AlbumController.Instance.CheckCollected();
         }

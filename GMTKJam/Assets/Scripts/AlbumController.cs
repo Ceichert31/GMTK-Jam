@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AlbumController : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class AlbumController : MonoBehaviour
     private SpriteRenderer albumFour;
     public bool hasAlbumFour;
 
+    [SerializeField]
+    private Image fadeOut;
+
     public static AlbumController Instance;
 
     private void Awake()
@@ -30,19 +34,34 @@ public class AlbumController : MonoBehaviour
     {
         if (hasAlbumOne)
         {
-            albumOne.DOColor(new Color(1, 1, 1, 1), 1.5f);
+            albumOne.DOColor(Color.white, 1.5f);
         }
         if (hasAlbumTwo)
         {
-            albumTwo.DOColor(new Color(1, 1, 1, 1), 1.5f);
+            albumTwo.DOColor(Color.white, 1.5f);
         }
         if (hasAlbumThree)
         {
-            albumThree.DOColor(new Color(1, 1, 1, 1), 1.5f);
+            albumThree.DOColor(Color.white, 1.5f);
         }
         if (hasAlbumFour)
         {
-            albumFour.DOColor(new Color(1, 1, 1, 1), 1.5f);
+            albumFour.DOColor(Color.white, 1.5f);
         }
+
+        if (hasAlbumOne && hasAlbumTwo && hasAlbumThree && hasAlbumFour)
+        {
+            //Win game
+            CameraShakeManager.Instance.Shake(3f);
+            GameManager.Instance.PlayerPosition.DOMove(transform.position, 3f);
+            GameManager.Instance.PlayerPosition.DOShakeRotation(3f);
+            GameManager.Instance.PlayerPosition.DOScale(0, 3f);
+            Invoke(nameof(FadeOut), 3f);
+        }
+    }
+
+    private void FadeOut()
+    {
+        fadeOut.DOFade(0, 1f);
     }
 }
