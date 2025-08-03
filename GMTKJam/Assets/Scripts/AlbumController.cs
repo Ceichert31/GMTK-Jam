@@ -14,10 +14,6 @@ public class AlbumController : MonoBehaviour
     public bool hasAlbumTwo;
 
     [SerializeField]
-    private SpriteRenderer albumThree;
-    public bool hasAlbumThree;
-
-    [SerializeField]
     private SpriteRenderer albumFour;
     public bool hasAlbumFour;
 
@@ -41,16 +37,12 @@ public class AlbumController : MonoBehaviour
         {
             albumTwo.DOColor(Color.white, 1.5f);
         }
-        if (hasAlbumThree)
-        {
-            albumThree.DOColor(Color.white, 1.5f);
-        }
         if (hasAlbumFour)
         {
             albumFour.DOColor(Color.white, 1.5f);
         }
 
-        if (hasAlbumOne && hasAlbumTwo && hasAlbumThree && hasAlbumFour)
+        if (hasAlbumOne && hasAlbumTwo && hasAlbumFour)
         {
             //Win game
             CameraShakeManager.Instance.Shake(3f);
