@@ -60035,6 +60035,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 220911502}
     - target: {fileID: 2824131103378923409, guid: d01939fa026af224e8c2b5e2504d3ea7, type: 3}
+      propertyPath: coyoteTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824131103378923409, guid: d01939fa026af224e8c2b5e2504d3ea7, type: 3}
       propertyPath: groundCheckRadius
       value: 0.4
       objectReference: {fileID: 0}

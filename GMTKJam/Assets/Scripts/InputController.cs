@@ -77,6 +77,10 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private AudioClip jumpSFX;
 
+    [SerializeField]
+    private float coyoteTime = 0.2f;
+    private float coyoteTimer;
+
     private void Awake()
     {
         //Setup movement
@@ -124,6 +128,24 @@ public class InputController : MonoBehaviour
         {
             canJump = true;
             playerAnimator.SetBool("IsFalling", false);
+        }
+
+        if (isGrounded)
+        {
+            coyoteTimer = coyoteTime;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+        }
+
+        if (coyoteTimer > 0f && !isJumping)
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
         }
 
         //Sprite flipping
@@ -289,7 +311,7 @@ public class InputController : MonoBehaviour
         canJump = false;
         isJumping = true;
 
-        //rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
 
         playerAnimator.SetTrigger("Jump");
