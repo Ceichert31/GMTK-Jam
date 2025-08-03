@@ -66,11 +66,6 @@ public class LevelController : MonoBehaviour
 
         currentLevel %= levelSpawnpointList.Count;
 
-        //Switch to current level
-        GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel]
-            .spawnPoint
-            .position;
-
         SetupLevel(currentLevel);
 
         //Reset dropper scripts
@@ -93,6 +88,11 @@ public class LevelController : MonoBehaviour
     private void SetupLevel(int level)
     {
         currentTime = 0;
+
+        //Switch to current level
+        GameManager.Instance.PlayerPosition.position = levelSpawnpointList[level]
+            .spawnPoint
+            .position;
 
         //Send event to switch songs
         songEvent.SongValue = levelSpawnpointList[level].Song;
