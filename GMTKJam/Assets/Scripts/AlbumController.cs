@@ -44,13 +44,18 @@ public class AlbumController : MonoBehaviour
 
         if (hasAlbumOne && hasAlbumTwo && hasAlbumFour)
         {
-            //Win game
-            CameraShakeManager.Instance.Shake(3f);
-            GameManager.Instance.PlayerPosition.DOMove(transform.position, 3f);
-            GameManager.Instance.PlayerPosition.DOShakeRotation(3f);
-            GameManager.Instance.PlayerPosition.DOScale(0, 3f);
-            Invoke(nameof(FadeOut), 3f);
+            Invoke(nameof(EndAnimation), 1f);
         }
+    }
+
+    private void EndAnimation()
+    {
+        //Win game
+        CameraShakeManager.Instance.Shake(3f);
+        GameManager.Instance.PlayerPosition.DOMove(transform.position, 3f);
+        GameManager.Instance.PlayerPosition.DOShakeRotation(3f);
+        GameManager.Instance.PlayerPosition.DOScale(0, 3f);
+        Invoke(nameof(FadeOut), 3f);
     }
 
     private void FadeOut()
