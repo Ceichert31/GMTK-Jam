@@ -21,6 +21,7 @@ public class CollectCrysal : MonoBehaviour, IResetable
         {
             arrow.transform.DOScaleY(18, 0.5f);
             CameraShakeManager.Instance.Shake(1f, 2f);
+            GetComponent<AudioSource>().Play();
         }
     }
 }
