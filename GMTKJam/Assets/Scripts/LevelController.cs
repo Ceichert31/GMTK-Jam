@@ -14,10 +14,11 @@ public class LevelController : MonoBehaviour
     [Header("Level Settings")]
     [SerializeField]
     private int currentLevel = 0;
-    
+
     private int currentLevelIndex;
 
-    [SerializeField] private List<int> currentLevels = new List<int>();
+    [SerializeField]
+    private List<int> currentLevels = new List<int>();
 
     [SerializeField]
     private List<SongLevelPair> levelSpawnpointList = new();
@@ -70,9 +71,8 @@ public class LevelController : MonoBehaviour
         if (Time.timeScale == 0)
             return;
 
-
         //Change level properly
-        if(currentLevelIndex + 1 >= currentLevels.Count)
+        if (currentLevelIndex + 1 >= currentLevels.Count)
         {
             currentLevelIndex = 0;
         }
@@ -114,9 +114,6 @@ public class LevelController : MonoBehaviour
                 AlbumController.Instance.hasAlbumTwo = true;
                 break;
             case 3:
-                AlbumController.Instance.hasAlbumThree = true;
-                break;
-            case 4:
                 AlbumController.Instance.hasAlbumFour = true;
                 break;
         }
