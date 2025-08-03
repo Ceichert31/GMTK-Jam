@@ -1,11 +1,9 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class DetectCrystal : MonoBehaviour, IResetable
 {
     //Bass boost song after getting crystal
-
-    [SerializeField]
-    private VoidEventChannel completedMinigameEvent;
 
     [SerializeField]
     private int collectableLayer;
@@ -17,6 +15,9 @@ public class DetectCrystal : MonoBehaviour, IResetable
 
     [SerializeField]
     private Transform originalPosition;
+
+    [SerializeField]
+    private GameObject albumn;
 
     private void Awake()
     {
@@ -34,7 +35,8 @@ public class DetectCrystal : MonoBehaviour, IResetable
             collision.gameObject.SetActive(false);
             crystal.SetActive(true);
 
-            completedMinigameEvent.CallEvent(new());
+            albumn.transform.DOMoveY(3, 0.3f);
+            CameraShakeManager.Instance.Shake(0.2f);
         }
     }
 
