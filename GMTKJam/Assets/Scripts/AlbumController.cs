@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AlbumController : MonoBehaviour
@@ -62,6 +63,11 @@ public class AlbumController : MonoBehaviour
 
     private void FadeOut()
     {
-        fadeOut.DOFade(255, 1f);
+        fadeOut
+            .DOFade(255, 1f)
+            .OnComplete(() =>
+            {
+                SceneManager.LoadScene(0);
+            });
     }
 }
