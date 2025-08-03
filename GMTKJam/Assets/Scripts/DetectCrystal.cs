@@ -1,4 +1,5 @@
 using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class DetectCrystal : MonoBehaviour, IResetable
@@ -38,6 +39,16 @@ public class DetectCrystal : MonoBehaviour, IResetable
             albumn.transform.DOMoveY(3, 0.3f);
             CameraShakeManager.Instance.Shake(0.2f);
         }
+    }
+
+    [Button]
+    public void Test()
+    {
+        //collision.gameObject.SetActive(false);
+        crystal.SetActive(true);
+
+        albumn.transform.DOMoveY(3, 0.3f);
+        CameraShakeManager.Instance.Shake(0.2f);
     }
 
     public void Reset()
