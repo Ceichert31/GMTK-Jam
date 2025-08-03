@@ -44,17 +44,17 @@ public class LevelController : MonoBehaviour
         currentTime += Time.deltaTime;
     }
 
-    public void EndOfSong(VoidEvent ctx)
-    {
-        SetupLevel(currentLevel);
-        //Switch to current level
-        GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel]
-            .spawnPoint
-            .position;
-    }
+    //public void EndOfSong(VoidEvent ctx)
+    //{
+    //    SetupLevel(currentLevel);
+    //    //Switch to current level
+    //    GameManager.Instance.PlayerPosition.position = levelSpawnpointList[currentLevel]
+    //        .spawnPoint
+    //        .position;
+    //}
 
     /// <summary>
-    /// Switches levels based on the value passed through
+    /// Advances to the next level
     /// </summary>
     /// <remarks>
     /// Called by an event listener
@@ -72,6 +72,8 @@ public class LevelController : MonoBehaviour
             .position;
 
         SetupLevel(currentLevel);
+
+        //Reset dropper scripts
 
         //Update UI
     }
@@ -91,6 +93,14 @@ public class LevelController : MonoBehaviour
 
         follow.TrackerSettings.PositionDamping = noDamping;
         Invoke(nameof(ResetDamping), 0.1f);
+
+        foreach (GameObject script in levelSpawnpointList[level].resetList)
+        {
+            if (script.TryGetComponent(out IResetable resetable))
+            {
+                resetable.Reset();
+            }
+        }
     }
 
     private void ResetDamping() => follow.TrackerSettings.PositionDamping = damping;
@@ -101,4 +111,5 @@ public struct SongLevelPair
 {
     public SongTemplate Song;
     public Transform spawnPoint;
+    public List<GameObject> resetList;
 }
