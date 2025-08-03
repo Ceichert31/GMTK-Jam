@@ -57318,6 +57318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MP3Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6867002101921107386, guid: c600ae46a713c5c4db8d687f4b1c8334, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5650500200885137947, guid: 783ca37855f207049947355e815158c2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
