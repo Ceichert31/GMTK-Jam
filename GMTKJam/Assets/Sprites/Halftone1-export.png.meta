@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 1edd469ea5df1e44bba24a4e4ab2ab1b
+guid: 4db92b5568f33ed43bab21ad54583307
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3086459377916316419
-    second: Halftone1_0
+      213: -1164908950797364465
+    second: Halftone1-export_0
   - first:
-      213: 2271623567688118106
-    second: Halftone1_1
+      213: -4785079870157386099
+    second: Halftone1-export_1
   - first:
-      213: -3684156934487603425
-    second: Halftone1_2
+      213: 6190148723526385330
+    second: Halftone1-export_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,12 +106,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Halftone1_0
+      name: Halftone1-export_0
       rect:
         serializedVersion: 2
         x: 11
         y: 0
-        width: 214
+        width: 211
         height: 235
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df4ff9d6c81ba25d0800000000000000
-      internalID: -3086459377916316419
+      spriteID: f03dc003b7965dfe0800000000000000
+      internalID: -1164908950797364465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Halftone1_1
+      name: Halftone1-export_1
       rect:
         serializedVersion: 2
         x: 213
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a5fa477699d668f10800000000000000
-      internalID: 2271623567688118106
+      spriteID: d8e8565e53bf79db0800000000000000
+      internalID: -4785079870157386099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Halftone1_2
+      name: Halftone1-export_2
       rect:
         serializedVersion: 2
         x: 221
@@ -165,8 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f17031f99ce3fdcc0800000000000000
-      internalID: -3684156934487603425
+      spriteID: 2beb0ac9773d7e550800000000000000
+      internalID: 6190148723526385330
       vertices: []
       indices: 
       edges: []
@@ -185,9 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Halftone1_0: -3086459377916316419
-      Halftone1_1: 2271623567688118106
-      Halftone1_2: -3684156934487603425
+      Halftone1-export_0: -1164908950797364465
+      Halftone1-export_1: -4785079870157386099
+      Halftone1-export_2: 6190148723526385330
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
