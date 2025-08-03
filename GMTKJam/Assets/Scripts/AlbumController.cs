@@ -62,6 +62,6 @@ public class AlbumController : MonoBehaviour
 
     private void FadeOut()
     {
-        fadeOut.DOFade(0, 1f);
+        fadeOut.DOFade(255, 1f);
     }
 }

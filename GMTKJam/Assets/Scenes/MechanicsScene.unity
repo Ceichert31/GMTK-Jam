@@ -3186,6 +3186,7 @@ MonoBehaviour:
   hasAlbumThree: 0
   albumFour: {fileID: 1653236093}
   hasAlbumFour: 0
+  fadeOut: {fileID: 305848960}
 --- !u!1 &1511407307
 GameObject:
   m_ObjectHideFlags: 0
