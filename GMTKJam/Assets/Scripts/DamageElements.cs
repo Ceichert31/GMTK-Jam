@@ -5,12 +5,15 @@ public class DamageElements : MonoBehaviour
     [SerializeField]
     private int playerLayer;
 
+    [SerializeField] LayerMask layerMask;
+
     [SerializeField]
-    private VoidEventChannel resetSongEvent;
+    private BoolEventChannel resetSongEvent;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == playerLayer)
+        Debug.Log("fekwopaijmefg");
+        if (collision.gameObject.layer == 8)
         {
             //Reset to start
             resetSongEvent.CallEvent(new());
