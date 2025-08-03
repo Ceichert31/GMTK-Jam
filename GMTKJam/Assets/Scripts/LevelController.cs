@@ -13,7 +13,7 @@ public class LevelController : MonoBehaviour
 
     [Header("Level Settings")]
     [SerializeField]
-    private int currentLevel = 0;
+    private int currentLevel = 1;
 
     private int currentLevelIndex;
 
@@ -107,7 +107,7 @@ public class LevelController : MonoBehaviour
         Debug.Log(currentLevelIndex);
         switch (currentLevel)
         {
-            case 0:
+            case 1:
                 AlbumController.Instance.hasAlbumOne = true;
                 break;
             case 2:
