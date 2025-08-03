@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Interactor : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class Interactor : MonoBehaviour
 
     [SerializeField]
     private Transform itemHolder;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip clip;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,6 +34,7 @@ public class Interactor : MonoBehaviour
         //Repurposed for powerups as well
         if (collision.TryGetComponent(out IEnhancable enhancement))
         {
+            audioSource.PlayOneShot(clip);
             enhancement.EnhancePlayer();
         }
     }
