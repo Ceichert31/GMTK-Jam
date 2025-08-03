@@ -96,6 +96,9 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0)
+            return;
+
         moveDirection = movementActions.Move.ReadValue<Vector2>().normalized;
 
         isGrounded = Physics2D.OverlapCircle(
@@ -277,6 +280,9 @@ public class InputController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext ctx)
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (!canJump)
             return;
 

@@ -58,6 +58,9 @@ public class LevelController : MonoBehaviour
     /// <param name="ctx"></param>
     public void ChangeLevel(BoolEvent ctx)
     {
+        if (Time.timeScale == 0)
+            return;
+
         currentLevel++;
 
         currentLevel %= levelSpawnpointList.Count;
