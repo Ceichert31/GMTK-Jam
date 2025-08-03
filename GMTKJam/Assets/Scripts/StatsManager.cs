@@ -50,7 +50,7 @@ public class StatsManager : MonoBehaviour
     {
         switch (currentLevelIndex)
         {
-            case 0:
+            case 1:
                 currentPlayerStats.jumpForce = 20f;
                 break;
             //Speed Level
