@@ -25,8 +25,7 @@ public class StatsManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        ResetStats();
-        OnChangeLevel(new BoolEvent());
+        OnChangeLevel(new());
     }
 
     private void Start()
@@ -50,7 +49,8 @@ public class StatsManager : MonoBehaviour
     {
         switch (currentLevelIndex)
         {
-            case 0:
+            case 1:
+                Debug.Log("hrloo");
                 currentPlayerStats.jumpForce = 20f;
                 break;
             //Speed Level
