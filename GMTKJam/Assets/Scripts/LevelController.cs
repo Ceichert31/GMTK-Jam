@@ -88,7 +88,7 @@ public class LevelController : MonoBehaviour
         Debug.Log(currentLevelIndex);
         SetupLevel(currentLevelIndex);
 
-        if (currentLevel == levelSpawnpointList.Count - 1)
+        if (currentLevel == levelSpawnpointList.Count)
         {
             AlbumController.Instance.CheckCollected();
         }
