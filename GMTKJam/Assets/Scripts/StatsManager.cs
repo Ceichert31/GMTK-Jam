@@ -37,20 +37,14 @@ public class StatsManager : MonoBehaviour
     {
         ResetStats();
 
-        IncreaseStats();
+        AllocateStats();
     }
 
-    public void UpdateStats()
-    {
-        IncreaseStats();
-    }
-
-    void IncreaseStats()
+    private void AllocateStats()
     {
         switch (currentLevelIndex)
         {
             case 1:
-                Debug.Log("hrloo");
                 currentPlayerStats.jumpForce = 20f;
                 break;
             //Speed Level
@@ -65,6 +59,26 @@ public class StatsManager : MonoBehaviour
                 break;
         }
     }
+
+    public void IncreaseStats(float amount)
+    {
+        switch (currentLevelIndex)
+        {
+            case 1:
+                break;
+            //Speed Level
+            case 2:
+                currentPlayerStats.speed += amount;
+                break;
+            //Jump Force
+            case 3:
+                currentPlayerStats.jumpForce = amount;
+                break;
+            case 4:
+                break;
+        }
+    }
+
 
     void ResetStats()
     {

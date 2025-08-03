@@ -14,8 +14,9 @@ public class SpeedEnhancement : MonoBehaviour, IEnhancable
     [SerializeField] float speedIncreaseAmount;
     public void EnhancePlayer()
     {
+        Debug.Log("triggered");
         StatsManager.instance.enhancedPlayerStats.speed += speedIncreaseAmount;
-        StatsManager.instance.UpdateStats();
+        StatsManager.instance.IncreaseStats(speedIncreaseAmount);
         GameObject.Destroy(gameObject);
     }
 }

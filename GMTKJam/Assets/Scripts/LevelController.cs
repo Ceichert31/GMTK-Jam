@@ -85,11 +85,11 @@ public class LevelController : MonoBehaviour
 
         StatsManager.instance.OnChangeLevel(new());
 
-        Debug.Log(currentLevelIndex);
         SetupLevel(currentLevelIndex);
 
-        if (currentLevel == levelSpawnpointList.Count)
+        if (currentLevel == currentLevels[currentLevels.Count - 1])
         {
+            Debug.Log("Checked");
             AlbumController.Instance.CheckCollected();
         }
 
@@ -101,10 +101,10 @@ public class LevelController : MonoBehaviour
     public void CompletedSong(VoidEvent ctx)
     {
         //Remove song from playlist and flag this one as complete
-        Debug.Log(levelSpawnpointList[currentLevelIndex]);
         levelSpawnpointList.RemoveAt(currentLevelIndex);
         currentLevels.RemoveAt(currentLevelIndex);
 
+        Debug.Log(currentLevelIndex);
         switch (currentLevelIndex)
         {
             case 0:
