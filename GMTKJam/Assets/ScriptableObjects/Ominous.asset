@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75221d8aa68f62745a240989870527da, type: 3}
+  m_Name: Ominous
+  m_EditorClassIdentifier: 
+  songName: ???
+  songIcon: {fileID: -7009575527832838479, guid: 2157e8f6b89b9d345b5c2874d0e797e9, type: 3}
+  songFile: {fileID: 8300000, guid: eb2c6e97ec9cb1441abdb40fcd42a0c8, type: 3}

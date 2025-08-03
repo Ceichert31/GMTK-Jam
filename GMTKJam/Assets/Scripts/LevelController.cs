@@ -68,6 +68,11 @@ public class LevelController : MonoBehaviour
 
         SetupLevel(currentLevel);
 
+        if (currentLevel == levelSpawnpointList.Count)
+        {
+            AlbumController.Instance.CheckCollected();
+        }
+
         //Reset dropper scripts
 
         //Update UI
@@ -77,6 +82,22 @@ public class LevelController : MonoBehaviour
     {
         //Remove song from playlist and flag this one as complete
         levelSpawnpointList.Remove(levelSpawnpointList[currentLevel]);
+
+        switch (currentLevel)
+        {
+            case 0:
+                AlbumController.Instance.hasAlbumOne = true;
+                break;
+            case 1:
+                AlbumController.Instance.hasAlbumTwo = true;
+                break;
+            case 2:
+                AlbumController.Instance.hasAlbumThree = true;
+                break;
+            case 3:
+                AlbumController.Instance.hasAlbumFour = true;
+                break;
+        }
 
         //Send signal that level was complete
     }
