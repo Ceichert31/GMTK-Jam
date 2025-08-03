@@ -67,6 +67,7 @@ public class StatsManager : MonoBehaviour
             //Speed Level
             case 2:
                 currentPlayerStats.speed += enhancedPlayerStats.speed;
+                currentPlayerStats.jumpForce = 10;
                 break;
             case 3:
                 break;
