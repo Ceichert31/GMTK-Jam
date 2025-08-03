@@ -38,6 +38,6 @@ public class DetectCrystal : MonoBehaviour, IResetable
         crystal.SetActive(false);
         collectableCrystal.SetActive(true);
         collectableCrystal.transform.parent = originalPosition;
-        collectableCrystal.transform.position = Vector2.zero;
+        collectableCrystal.transform.localPosition = Vector3.zero;
     }
 }

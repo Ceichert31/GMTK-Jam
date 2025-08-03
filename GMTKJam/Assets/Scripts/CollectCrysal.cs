@@ -12,6 +12,7 @@ public class CollectCrysal : MonoBehaviour, IResetable
     public void Reset()
     {
         arrow.transform.DOScaleY(0, 0f);
+        DOTween.CompleteAll();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
