@@ -14,6 +14,10 @@ public class LevelController : MonoBehaviour
     [Header("Level Settings")]
     [SerializeField]
     private int currentLevel = 0;
+    
+    private int currentLevelIndex;
+
+    [SerializeField] private List<int> currentLevels = new List<int>();
 
     [SerializeField]
     private List<SongLevelPair> levelSpawnpointList = new();
@@ -37,6 +41,11 @@ public class LevelController : MonoBehaviour
         follow = Camera.main.GetComponent<CinemachineFollow>();
 
         SetupLevel(0);
+
+        currentLevels.Add(1);
+        currentLevels.Add(2);
+        currentLevels.Add(3);
+        currentLevels.Add(4);
     }
 
     private void Update()
@@ -61,11 +70,23 @@ public class LevelController : MonoBehaviour
         if (Time.timeScale == 0)
             return;
 
-        currentLevel++;
 
-        currentLevel %= levelSpawnpointList.Count;
+        //Change level properly
+        if(currentLevelIndex + 1 >= currentLevels.Count)
+        {
+            currentLevelIndex = 0;
+        }
+        else
+        {
+            currentLevelIndex++;
+        }
+        currentLevel = currentLevels[currentLevelIndex];
+        StatsManager.instance.currentLevelIndex = currentLevel;
 
-        SetupLevel(currentLevel);
+        StatsManager.instance.OnChangeLevel(new());
+
+        Debug.Log(currentLevelIndex);
+        SetupLevel(currentLevelIndex);
 
         if (currentLevel == levelSpawnpointList.Count - 1)
         {
@@ -80,9 +101,11 @@ public class LevelController : MonoBehaviour
     public void CompletedSong(VoidEvent ctx)
     {
         //Remove song from playlist and flag this one as complete
-        levelSpawnpointList.Remove(levelSpawnpointList[currentLevel]);
+        Debug.Log(levelSpawnpointList[currentLevelIndex]);
+        levelSpawnpointList.RemoveAt(currentLevelIndex);
+        currentLevels.RemoveAt(currentLevelIndex);
 
-        switch (currentLevel)
+        switch (currentLevelIndex)
         {
             case 0:
                 AlbumController.Instance.hasAlbumOne = true;
@@ -99,6 +122,8 @@ public class LevelController : MonoBehaviour
         }
 
         //Send signal that level was complete
+        currentLevelIndex--;
+        ChangeLevel(new());
     }
 
     /// <summary>
