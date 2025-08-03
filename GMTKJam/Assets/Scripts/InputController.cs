@@ -182,6 +182,13 @@ public class InputController : MonoBehaviour
     {
         Vector2 moveForce = (100 * Time.deltaTime) * movementSpeed * moveDirection;
 
+        if (moveDirection != Vector2.zero && TutorialController.Instance.tutorial1)
+        {
+            TutorialController.Instance.tutorial1 = true;
+            TutorialController.Instance.walking.SetActive(false);
+            TutorialController.Instance.jump.SetActive(true);
+        }
+
         //On ground
         if (isGrounded && !isOnSlope && !isJumping)
         {
@@ -307,6 +314,12 @@ public class InputController : MonoBehaviour
 
         if (!canJump)
             return;
+
+        if (TutorialController.Instance.tutorial2)
+        {
+            TutorialController.Instance.tutorial2 = true;
+            TutorialController.Instance.jump.SetActive(false);
+        }
 
         canJump = false;
         isJumping = true;
