@@ -1544,12 +1544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9840f87219df84505803024c796e739d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  usePreset: 0
-  preset: {fileID: 0}
-  tagEffects: []
-  globalEffects: []
-  updatesPerSecond: 30
 --- !u!114 &578323651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,7 +1692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 629223610}
   m_Layer: 0
-  m_Name: Level1
+  m_Name: Level 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2769,7 +2763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1257290085}
   m_Layer: 0
-  m_Name: Level3
+  m_Name: Level 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3120,9 +3114,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1684905367}
-  - {fileID: 629223610}
-  - {fileID: 1937045263}
   - {fileID: 1257290085}
+  - {fileID: 629223610}
   - {fileID: 265796118}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3139,6 +3132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
+  currentLevels: 
   levelSpawnpointList:
   - Song: {fileID: 11400000, guid: 5a7cebc8a07441f4d9af1bc716da956d, type: 2}
     spawnPoint: {fileID: 1684905367}
@@ -3147,9 +3141,6 @@ MonoBehaviour:
     - {fileID: 666466184}
   - Song: {fileID: 11400000, guid: 25a32e38f12c4af43b755f140c9af594, type: 2}
     spawnPoint: {fileID: 629223610}
-    resetList: []
-  - Song: {fileID: 11400000, guid: e876bda0ce2305a4fa0bc297403a51a6, type: 2}
-    spawnPoint: {fileID: 1937045263}
     resetList: []
   - Song: {fileID: 11400000, guid: 5d578ee5158b67a4f8d2013825ef2b58, type: 2}
     spawnPoint: {fileID: 1257290085}
@@ -3179,18 +3170,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1338535490}
         m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
         m_MethodName: ChangeLevel
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1249572273}
-        m_TargetAssemblyTypeName: StatsManager, Assembly-CSharp
-        m_MethodName: OnChangeLevel
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3781,12 +3760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9840f87219df84505803024c796e739d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  usePreset: 0
-  preset: {fileID: 0}
-  tagEffects: []
-  globalEffects: []
-  updatesPerSecond: 30
 --- !u!1 &1585537712
 GameObject:
   m_ObjectHideFlags: 0
@@ -9068,7 +9041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684905367}
   m_Layer: 0
-  m_Name: Level0
+  m_Name: Level 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9585,37 +9558,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1937045262
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1937045263}
-  m_Layer: 0
-  m_Name: Level2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1937045263
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937045262}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.62, y: -71.83, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1338535489}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1944095545
 GameObject:
   m_ObjectHideFlags: 0
@@ -57844,12 +57786,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9840f87219df84505803024c796e739d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  usePreset: 0
-  preset: {fileID: 0}
-  tagEffects: []
-  globalEffects: []
-  updatesPerSecond: 30
 --- !u!114 &2006896319
 MonoBehaviour:
   m_ObjectHideFlags: 0

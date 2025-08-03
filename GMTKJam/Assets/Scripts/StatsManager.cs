@@ -11,7 +11,7 @@ public class StatsManager : MonoBehaviour
 {
     public static StatsManager instance;
 
-    [SerializeField] int currentLevelIndex;
+    public int currentLevelIndex;
 
     //InitalPlayer Stats
     [SerializeField] StatLine initalPlayerStats;
@@ -36,16 +36,6 @@ public class StatsManager : MonoBehaviour
 
     public void OnChangeLevel(BoolEvent ctx)
     {
-        //Makes the level index loop back around
-        if (currentLevelIndex == 4)
-        {
-            currentLevelIndex = 1;
-        }
-        else
-        {
-            currentLevelIndex++;
-        }
-
         ResetStats();
 
         IncreaseStats();
@@ -60,17 +50,20 @@ public class StatsManager : MonoBehaviour
     {
         switch (currentLevelIndex)
         {
-            //Jump Force
             case 1:
-                currentPlayerStats.jumpForce += enhancedPlayerStats.jumpForce;
+                currentPlayerStats.jumpForce = 20f;
                 break;
             //Speed Level
             case 2:
                 currentPlayerStats.speed += enhancedPlayerStats.speed;
                 break;
+            //Jump Force
             case 3:
+                currentPlayerStats.jumpForce += enhancedPlayerStats.jumpForce;
                 break;
             case 4:
+                break;
+            case 5:
                 break;
         }
     }
